@@ -1,23 +1,41 @@
 <template>
 
-
     <b-row>
         <b-col cols="12">
         
-		<b-link href="sign-in">Sign-In</b-link>&nbsp;&nbsp;
-		<b-link href="sign-in">Exercise Library</b-link>
-		
-		<h2>
-                My Routines
-                <b-link href="#/add-board">(New Routine)</b-link>
-            </h2>
-            <b-table striped hover :items="boards" :fields="fields">
-                <template slot="actions" scope="row">
-                    <b-btn size="sm" @click.stop="details(row.item)">Details</b-btn>
-                </template>
-            </b-table>
-        </b-col>
-    </b-row>
+      <b-jumbotron>
+        <b-form @submit="onSubmit">
+          <b-form-group id="fieldsetHorizontal"
+                    horizontal
+                    :label-cols="4"
+                    breakpoint="md"
+                    label="Enter Title">
+            <b-form-input id="title" v-model.trim="board.title"></b-form-input>
+          </b-form-group>
+          <b-form-group id="fieldsetHorizontal"
+                    horizontal
+                    :label-cols="4"
+                    breakpoint="md"
+                    label="Enter Description">
+              <b-form-textarea id="description"
+                         v-model="board.description"
+                         placeholder="Enter something"
+                         :rows="2"
+                         :max-rows="6">{{board.description}}</b-form-textarea>
+          </b-form-group>
+          <b-form-group id="fieldsetHorizontal"
+                    horizontal
+                    :label-cols="4"
+                    breakpoint="md"
+                    label="Enter Author">
+            <b-form-input id="author" v-model.trim="board.author"></b-form-input>
+          </b-form-group>
+          <b-button type="submit" variant="primary">Save</b-button>
+        </b-form>
+      </b-jumbotron>
+	  
+	    </b-col>
+  </b-row>
 	
 
 </template>
@@ -35,25 +53,25 @@
                     title: { label: 'Title', sortable: true, 'class': 'text-left' },
                     actions: { label: 'Action', 'class': 'text-center' }
                 },
-                boards: [],
+                routines: [],
                 errors: [],
-                ref: firebase.firestore().collection('boards'),
+                ref: firebase.firestore().collection('routines'),
             }
         },
         created () {
             this.ref.onSnapshot((querySnapshot) => {
-                this.boards = [];
+                this.routines = [];
                 querySnapshot.forEach((doc) => {
-                    this.boards.push({
+                    this.routines.push({
                         key: doc.id,
-                        title: doc.data().title
+                        title: doc.data().routine_name
                     });
                 });
             });
         },
         methods: {
-            details (board) {
-                router.push({ name: 'ShowBoard', params: { id: board.key }})
+            details (routine) {
+                router.push({ name: 'Showroutine', params: { id: routine.key }})
             }
         }
     }
