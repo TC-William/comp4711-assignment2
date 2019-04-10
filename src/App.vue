@@ -1,18 +1,28 @@
 <template>
   <div id="app">
+  
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <RoutineList msg="Welcome to Your Vue.js App"/>
+  
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import RoutineList from './components/RoutineList.vue'
+import UserSelect from './components/UserSelect.vue'
+import CustomizeRoutine from './components/CustomizeRoutine.vue'
+import CustomizeExercise from './components/CustomizeExercise.vue'
+import ExerciseLibrary from './components/ExerciseLibrary.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
-  }
+    RoutineList,
+	UserSelect,
+	CustomizeRoutine, 
+    CustomizeExercise,
+	ExerciseLibrary
+   }   
 }
 </script>
 
