@@ -1,9 +1,13 @@
 <template>
     <b-row>
         <b-col cols="12">
-            <h2>
-                Board List
-                <b-link href="#/add-board">(Add Board)</b-link>
+        
+		<b-link href="sign-in">Sign-In</b-link>&nbsp;&nbsp;
+		<b-link href="sign-in">Exercise Library</b-link>
+		
+		<h2>
+                My Routines
+                <b-link href="#/add-board">(New Routine)</b-link>
             </h2>
             <b-table striped hover :items="boards" :fields="fields">
                 <template slot="actions" scope="row">
