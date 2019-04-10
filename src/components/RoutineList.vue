@@ -7,26 +7,8 @@
                         horizontal
                         :label-cols="4"
                         breakpoint="md"
-                        label="Enter Title">
-                <b-form-input id="title" v-model.trim="board.title"></b-form-input>
-            </b-form-group>
-            <b-form-group id="fieldsetHorizontal"
-                        horizontal
-                        :label-cols="4"
-                        breakpoint="md"
-                        label="Enter Description">
-                <b-form-textarea id="description"
-                            v-model="board.description"
-                            placeholder="Enter something"
-                            :rows="2"
-                            :max-rows="6">{{board.description}}</b-form-textarea>
-            </b-form-group>
-            <b-form-group id="fieldsetHorizontal"
-                        horizontal
-                        :label-cols="4"
-                        breakpoint="md"
-                        label="Enter Author">
-                <b-form-input id="author" v-model.trim="board.author"></b-form-input>
+                        label="Enter routine_name">
+                <b-form-input id="routine_name" v-model.trim="routine.routine_name"></b-form-input>
             </b-form-group>
             <b-button type="submit" variant="primary">Save</b-button>
             </b-form>
@@ -44,11 +26,11 @@
     import router from '../router'
 
     export default {
-        name: 'AddBoard',
+        name: 'Addroutine',
         data () {
             return {
             ref: firebase.firestore().collection('routines'),
-            board: {}
+            routine: {}
             }
         },
 
@@ -56,7 +38,7 @@
         data () {
             return {
                 fields: {
-                    title: { label: 'Title', sortable: true, 'class': 'text-left' },
+                    routine_name: { label: 'routine_name', sortable: true, 'class': 'text-left' },
                     actions: { label: 'Action', 'class': 'text-center' }
                 },
                 routines: [],
@@ -71,7 +53,7 @@
                 querySnapshot.forEach((doc) => {
                     this.routines.push({
                         key: doc.id,
-                        title: doc.data().routine_name
+                        routine_name: doc.data().routine_name
                     });
                 });
             });
@@ -79,17 +61,15 @@
         methods: {
             details (routine) {
                 router.push({ name: 'Showroutine', params: { id: routine.key }})
-            }
+            },
 
             onSubmit (evt) {
                 evt.preventDefault()
 
                 this.ref.add(this.routine).then((docRef) => {
-                    this.routine.title = ''
-                    this.routine.description = ''
-                    this.routine.author = ''
+                    this.routine.routine_name = ''
                     router.push({
-                    name: 'AddBoard'
+                    name: 'Addroutine'
                     })
                 })
                 .catch((error) => {
