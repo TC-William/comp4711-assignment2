@@ -1,4 +1,6 @@
 <template>
+
+
     <b-row>
         <b-col cols="12">
         
@@ -16,6 +18,8 @@
             </b-table>
         </b-col>
     </b-row>
+	
+
 </template>
 
 <script>

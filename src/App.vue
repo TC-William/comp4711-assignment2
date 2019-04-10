@@ -8,11 +8,11 @@
 </template>
 
 <script>
-import RoutineList from './components/RoutineList.vue'
-import UserSelect from './components/UserSelect.vue'
-import CustomizeRoutine from './components/CustomizeRoutine.vue'
-import CustomizeExercise from './components/CustomizeExercise.vue'
-import ExerciseLibrary from './components/ExerciseLibrary.vue'
+import RoutineList from './components/RoutineList.vue';
+import UserSelect from './components/UserSelect.vue';
+import CustomizeRoutine from './components/CustomizeRoutine.vue';
+import CustomizeExercise from './components/CustomizeExercise.vue';
+import ExerciseLibrary from './components/ExerciseLibrary.vue';
 
 export default {
   name: 'app',
