@@ -14,9 +14,9 @@
                         :label-cols="4"
                         breakpoint="md"
                         label="Please enter the name of your new routine">
-                <!-- 
-				<b-form-input id="routine_name" v-model.trim="routine.routine_name"></b-form-input>
-				-->
+                
+				<b-form-input id="routine_name"></b-form-input>
+				
             </b-form-group>
             <b-button type="submit" variant="primary">Save</b-button>
             </b-form>
@@ -51,7 +51,8 @@
         data () {
             return {
             ref: firebase.firestore().collection('routines'),
-            routine: {}
+            key: '',
+			routine: {}
             }
         },
 
@@ -87,8 +88,12 @@
             onSubmit (evt) {
                 evt.preventDefault()
 
-                this.ref.add(this.routine).then((docRef) => {
-                    this.routine.routine_name = ''
+				//this.routine
+						
+				routine r = new routine();
+						
+                this.ref.add(r).then((docRef) => {
+                    //this.routine.routine_name = ''
                     router.push({
                     name: 'Addroutine'
                     })
